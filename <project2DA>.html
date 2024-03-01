@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Drag and Drop To-Do List</title>
+<style>
+  #taskInput, #addTaskBtn {
+    margin: 10px 0;
+  }
+  .task {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: grab;
+  }
+  .dropzone {
+    min-height: 50px;
+    padding: 10px;
+    background-color: #e1e1e1;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+</style>
+</head>
+<body>
+
+<input type="text" id="taskInput" placeholder="Add new task" />
+<button id="addTaskBtn">Add Task</button>
+
+<div id="tasks"></div>
+
+<div class="dropzone">Drop tasks here</div>
+
+<script>
+  let taskId = 0;
+
+  document.getElementById('addTaskBtn').addEventListener('click', function() {
+    const taskInput = document.getElementById('taskInput');
+    const taskText = taskInput.value.trim();
+    if (taskText === '') return;
+
+    const newTask = document.createElement('div');
+    newTask.classList.add('task');
+    newTask.setAttribute('draggable', true);
+    newTask.setAttribute('id', 'task-' + taskId++);
+    newTask.textContent = taskText;
+
+    newTask.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text', e.target.id);
+    });
+
+    document.getElementById('tasks').appendChild(newTask);
+    taskInput.value = ''; // Clear input field
+  });
+
+  const dropzone = document.querySelector('.dropzone');
+
+  dropzone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.style.backgroundColor = '#c1c1c1';
+  });
+
+  dropzone.addEventListener('dragleave', () => {
+    dropzone.style.backgroundColor = '#e1e1e1';
+  });
+
+  dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    const id = e.dataTransfer.getData('text');
+    const task = document.getElementById(id);
+    dropzone.appendChild(task);
+    task.style.cursor = 'default';
+    dropzone.style.backgroundColor = '#e1e1e1';
+
+    // Add delete functionality
+    task.addEventListener('click', () => {
+      task.remove();
+    });
+  });
+</script>
+
+</body>
+</html>
