@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management System</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Restaurant Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="#restaurants">Restaurants</a></li>
+                <li><a href="#order">Place Order</a></li>
+                <li><a href="#subscribe">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="restaurants">
+        <h2>Featured Restaurants</h2>
+        <article>
+            <h3>Restaurant A</h3>
+            <p>Description of Restaurant A. Great for family dinners and gatherings.</p>
+        </article>
+        <article>
+            <h3>Restaurant B</h3>
+            <p>Description of Restaurant B. Perfect for quick bites and takeaways.</p>
+        </article>
+    </section>
+
+    <section id="menu">
+        <h2>Sample Menu</h2>
+        <ul>
+            <li>Pizza - $10</li>
+            <li>Burger - $5</li>
+            <li>Salad - $7</li>
+        </ul>
+    </section>
+
+    <section id="order">
+        <h2>Place Your Order</h2>
+        <form>
+            <label for="item">Select Item:</label>
+            <select id="item" name="item">
+                <option value="pizza">Pizza</option>
+                <option value="burger">Burger</option>
+                <option value="salad">Salad</option>
+            </select>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <input type="submit" value="Order Now">
+        </form>
+    </section>
+
+    <section id="subscribe">
+        <h2>Subscribe for Regular Deliveries</h2>
+        <form>
+            <label for="days">Select Days:</label>
+            <select id="days" name="days" multiple>
+                <option value="monday">Monday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="friday">Friday</option>
+            </select>
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time">
+            <input type="submit" value="Subscribe">
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Restaurant Management System</p>
+    </footer>
+</body>
+</html>
